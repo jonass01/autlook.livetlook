@@ -1,0 +1,133 @@
+/**
+* Template Name: Maundy - v4.8.0
+* Template URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+(function() {
+	"use strict";
+
+	/**
+	 * Easy selector helper function
+	 */
+	const select = (el, all = false) => {
+		el = el.trim()
+		if (all) {
+			return [...document.querySelectorAll(el)]
+		} else {
+			return document.querySelector(el)
+		}
+	}
+
+	/**
+	 * Easy event listener function
+	 */
+	const on = (type, el, listener, all = false) => {
+		let selectEl = select(el, all)
+		if (selectEl) {
+			if (all) {
+			selectEl.forEach(e => e.addEventListener(type, listener))
+			} else {
+			selectEl.addEventListener(type, listener)
+			}
+		}
+	}
+
+	/**
+	 * Easy on scroll event listener
+	 */
+	const onscroll = (el, listener) => {
+		el.addEventListener('scroll', listener)
+	}
+
+	/**
+	 * Back to top button
+	 */
+	let backtotop = select('.back-to-top')
+	if (backtotop) {
+		const toggleBacktotop = () => {
+			if (window.scrollY > 100) {
+				backtotop.classList.add('active')
+			} else {
+				backtotop.classList.remove('active')
+			}
+		}
+		window.addEventListener('load', toggleBacktotop)
+		onscroll(document, toggleBacktotop)
+	}
+
+	/**
+	 * Countdown timer
+	 */
+	/*let countdown = select('.countdown');
+	const output = countdown.innerHTML;
+
+	const countDownDate = function() {
+		let timeleft = new Date(countdown.getAttribute('data-count')).getTime() - new Date().getTime();
+
+		let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+		let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+		let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+		countdown.innerHTML = output.replace('%d', days).replace('%h', hours).replace('%m', minutes).replace('%s', seconds);
+	}
+
+	countDownDate();
+	setInterval(countDownDate, 1000);*/
+})()
+
+$(document).ready(function() {
+	$("#cita-1").on("submit", function(e) {
+		e.preventDefault();
+
+		//console.log('entro #cita-1');
+
+		const mensaje = $('#input-whatsapp-1').val();
+		//let url = 'https://wa.me/message/FUAXL4WXVE6JI1?text=' + mensaje;
+		const url = 'https://wa.me/529982193105?text=' + mensaje;
+
+		//console.log('url', url);
+
+		$('#input-whatsapp-1').val('');
+
+		window.open(url, '_blank').focus();
+	});
+
+	$("#cita-2").on("submit", function(e) {
+		e.preventDefault();
+
+		const nombre = $('#input-nombre').val();
+		const correo = $('#input-email').val();
+		const telefono = $('#input-telefono').val();
+		const tipoAutomovil = $('#select-tipo-automovil').val();
+		const tipoServicio = $('#select-tipo-servicio').val();
+		const estacionamiento = $('#select-estacionamiento').val();
+		const fecha = $('#input-fecha').val();
+		const horario = $('#input-horario').val();
+
+		/*console.log('nombre: ', nombre);
+		console.log('correo: ', correo);
+		console.log('telefono: ', telefono);
+		console.log('tipoAutomovil: ', tipoAutomovil);
+		console.log('tipoServicio: ', tipoServicio);
+		console.log('fecha: ', fecha);
+		console.log('horario: ', horario);*/
+
+		mensaje = 'Quiero un lavado para, Nombre: ' + nombre + ', Correo: ' + correo + ', Telefono: ' + telefono + ', Tipo automovil: ' + tipoAutomovil + ', Tipo servicio: '+ tipoServicio + ', en el Estacionamiento: ' + estacionamiento + ', Fecha: ' + fecha + ', Posible horario: ' + horario;
+
+		//let url = 'https://wa.me/message/FUAXL4WXVE6JI1?text=' + mensaje;
+		const url = 'https://wa.me/529982193105?text=' + mensaje;
+
+		$('#input-nombre').val('');
+		$('#input-email').val('');
+		$('#input-telefono').val('');
+		$('#select-tipo-automovil').val('');
+		$('#select-tipo-servicio').val('');
+		$('#select-estacionamiento').val('');
+		$('#input-fecha').val('');
+		$('#input-horario').val('');
+
+		window.open(url, '_blank').focus();
+	});
+});
